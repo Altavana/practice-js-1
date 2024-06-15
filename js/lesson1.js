@@ -102,22 +102,51 @@
 // }
 // console.log(seasone(2));
 
-function seasone(num) {
-  switch (num) {
-    case 1:
-      return "зима";
+// function seasone(num) {
+//   switch (num) {
+//     case 1:
+//       return "зима";
 
-    case 2:
-      return "весна";
+//     case 2:
+//       return "весна";
 
-    case 3:
-      return "літо";
+//     case 3:
+//       return "літо";
 
-    case 4:
-      return "осінь";
+//     case 4:
+//       return "осінь";
 
-    default:
-      return "Enter number from 1 to 4";
-  }
+//     default:
+//       return "Enter number from 1 to 4";
+//   }
+// }
+// console.log(seasone(5));
+
+//Напишіть код, який буде питати
+//логін за допомогою prompt и логіровати результат
+//в консоль браузера
+//Якщо користувач вводить "Адмін",
+//то prompt запрашує пароль.
+//Якщо ничого не ввели чи нажата клавіша Esc
+//вивести строку "Скасовано"
+//В противному випадку вивести рядок "Я вас не знаю"
+//Пароль перевіряти так:
+//Якщо введен пароль "Я головний",
+//то вивести рядок "Вітаю!"
+//в іншому випадку виводити рядок "Невірний пароль!"
+
+const login = prompt("Enter login");
+console.log(login);
+if (login === "Адмін") {
+  const password = prompt("Enter password");
+  //   if (password === "Я головний") {
+  //     alert("Вітаю!");
+  //   } else {
+  //     alert("Невірний пароль!");
+  //   }
+  alert(password === "Я головний" ? "Вітаю!" : "Невірний пароль!");
+} else if (login === "" || login === null) {
+  alert("Скасовано");
+} else {
+  alert("Я вас не знаю");
 }
-console.log(seasone(5));
