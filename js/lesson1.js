@@ -166,17 +166,36 @@
 //   console.log(`${minuteValue}-четверта чверть`);
 // }
 
-function check() {
-  const minuteValue = Math.floor(Math.random() * (59 - 0) + 0);
-  if (minuteValue <= 15) {
-    return `${minuteValue}-перша чверть`;
+// function check() {
+//   const minuteValue = Math.floor(Math.random() * (59 - 0) + 0);
+//   if (minuteValue <= 15) {
+//     return `${minuteValue}-перша чверть`;
+//   }
+//   if (minuteValue <= 30) {
+//     return `${minuteValue}-друга чверть`;
+//   }
+//   if (minuteValue <= 45) {
+//     return `${minuteValue}-третя чверть`;
+//   }
+//   return `${minuteValue}-четверта чверть`;
+// }
+// console.log(check());
+
+//Напиши функцію:
+// Якщо число ділитися на 3 повертати
+//fizz якщо ділитися на 5 повертати buzz
+//Якщо ділитися на 3 і на 5 повернути fizzbuzz
+
+function checkNum(number) {
+  if (number % 3 === 0 && number % 5 === 0) {
+    return "fizzbuzz";
   }
-  if (minuteValue <= 30) {
-    return `${minuteValue}-друга чверть`;
+  if (number % 3 === 0) {
+    return "fizz";
   }
-  if (minuteValue <= 45) {
-    return `${minuteValue}-третя чверть`;
+  if (number % 5 === 0) {
+    return "buzz";
   }
-  return `${minuteValue}-четверта чверть`;
+  return "error";
 }
-console.log(check());
+console.log(checkNum(30));
