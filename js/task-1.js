@@ -11,3 +11,9 @@ const user = {
   hobby: 'tennis',
   premium: true,
 }
+user.mood = "happy";
+user.hobby = "skydiving";
+user.premium = false;
+for (const banana  of Object.keys(user)) {
+  console.log(`${banana}: ${user[banana]}`);
+}
