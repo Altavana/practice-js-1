@@ -24,6 +24,7 @@ const account = {
     return {
       type,
       amount,
+      id: this.transactions.length,
     }
   },
 
@@ -32,7 +33,10 @@ const account = {
   // Викликає createTransaction для створення об'єкта транзакції
   // Після чого додає його до історії транзакцій
 
-  deposit(amount) {},
+  deposit(amount) {
+    this.balance += amount;
+    this.transactions.push(this.createTransaction(Transaction.DEPOSIT, amount))
+  },
 
   // Метод відповідає за зняття суми з балансу.
   // Приймає суму тразакцій.
@@ -40,14 +44,50 @@ const account = {
   // Після чого додає його до історії транзакцій
   // Якщо amount більше за поточний баланс, виводимо повідомлення про те, що на рахунку недостатньо коштів
 
-  withdraw(amount) {},
+  withdraw(amount) {
+    if (amount > this.balance){
+      console.log("на рахунку недостатньо коштів");
+      return;
+    } 
+    this.balance -= amount;
+    this.transactions.push(this.createTransaction(Transaction.WITHDRAW, amount));
+  },
 
   // Метод, що повертає поточний баланс
-  getBalance() {},
+  getBalance() {
+    return this.balance;
+  },
 
   // Метод шукає та повертає об'єкта транзакції по id
-  getTransactionDetails(id) {},
+  getTransactionDetails(id) {
+    for (const item of this.transactions){
+      if (id === item.id){
+        return item;
+      }
+    }
+  },
 
   // Метод повертає кількість коштів певного типу тразакції зі всієї історії транзакції
-  getTransactionType(type) {},
+  getTransactionType(type) {
+    let sum = 0;
+    for (const item of this.transactions){
+      if (item.type === type){
+        sum += item.amount;
+      }
+    }
+    return sum;
+  },
 }
+
+
+account.deposit(243);
+account.deposit(568);
+account.withdraw(1000);
+account.withdraw(300);
+
+console.log(account);
+
+console.log(account.getBalance());
+console.log(account.getTransactionDetails(1));
+console.log(account.getTransactionType(Transaction.DEPOSIT));
+
