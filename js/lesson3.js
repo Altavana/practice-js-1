@@ -151,11 +151,101 @@ const users = [
 // Task 5
 //Призначити знижку 20% на фрукти в масиві,
 //Присвоїти ID для кожного продукту (використовуючи індекс елемента)
-const fruits = [
-  { name: "apple", price: 200 },
-  { name: "orange", price: 300 },
-  { name: "grapes", price: 750 },
-];
+// const fruits = [
+//   { name: "apple", price: 200 },
+//   { name: "orange", price: 300 },
+//   { name: "grapes", price: 750 },
+// ];
 
-const fruitsNew = fruits.map((fruit, index) => ({...fruit, price:fruit.price * 0.8, id:index * 1234}));
-console.log(fruitsNew);
+// const fruitsNew = fruits.map((fruit, index) => ({...fruit, price:fruit.price * 0.8, id:index * 1234}));
+// console.log(fruitsNew);
+
+//1. Створи клас User для створення користувача з такими властивостями:
+//a. userName - ім'я, рядок
+//b. age - вік, число
+//c. numbersOfPost - кількість постів, число
+//d. конструктор очікує 1 параметр - об'єкт налаштувань з однойменними властивостями
+//Додай метод getInfo(), який повертає рядок:
+//`Користувачеві <name> <age> років і в нього <posts> публікацій.`
+
+// class User {
+//   constructor(obj) {
+//     this.userName = obj.name;
+//     this.age = obj.age;
+//     this.numbersOfPost = obj.post;
+//   }
+//   getInfo() {
+//     return `Користувачеві ${this.userName} ${this.age} років і в нього ${this.numbersOfPost} публікацій.`;
+//   }
+// }
+// const user = new User({ name: "Vlad", age: 26, post: 10 });
+// console.log(user.getInfo());
+
+//2. Напиши класс Client який створює об'єкт
+//із властивостями login, email
+//Об'яви приватні властивості #login і #email,
+//доступ до яких зроби через геттер и сеттер:
+// get getClientData() має повертати об'єкт з переліченими властивостями
+// set changeEmail(newEmail) перезаписує пошту користувача
+
+// class Client {
+//   #login;
+//   #email;
+//   constructor(login, email) {
+//     this.#login = login;
+//     this.#email = email;
+//   }
+//   get getClientData() {
+//     return { clientLogin: this.#login, clientEmail: this.#email };
+//   }
+//   set changeEmail(newEmail) {
+//     this.#email = newEmail;
+//   }
+// }
+// const user = new Client("Login", "test@gmail.com");
+// console.log(user.getClientData);
+// user.changeEmail = "test2@gmail.com";
+// console.log(user.getClientData);
+
+//3. Напиши класс Notes який управляє коллекцієй нотаток у
+//властивості items.
+//Нотатка це  об'єкт з властивостями text, priority
+//Додай класу статичну властивість Priority,
+//в якій буде зберігатись об'єкт з пріорітетами ("hight", "middle", "low").
+//Додай методи addNote(note), removeNote(noteText)
+//updatePriority(noteText, newPriority),
+class Notes {
+  static Priority = {
+    HIGHT: "hight",
+    MIDDLE: "middle",
+    LOW: "low",
+  };
+  constructor() {
+    this.items = [];
+  }
+  addNote(note) {
+    if (this.items.some((item) => item.text === note.text)) {
+      return "Note already exist";
+    }
+    this.items.push(note);
+  }
+  removeNote(noteText) {
+    this.items = this.items.filter((note) => noteText !== note.text);
+  }
+  updatePriority(noteText, newPriority) {
+    const note = this.items.find((note) => noteText === note.text);
+    console.log(note);
+    if (note) {
+      note.priority = newPriority;
+    }
+  }
+}
+
+const note = new Notes();
+note.addNote({ text: "Note1", priority: Notes.Priority.LOW });
+note.addNote({ text: "Note2", priority: Notes.Priority.LOW });
+note.addNote({ text: "Note3", priority: Notes.Priority.HIGHT });
+note.updatePriority("Note2", Notes.Priority.MIDDLE);
+note.updatePriority("Note3", Notes.Priority.MIDDLE);
+note.removeNote("Note1");
+console.table(note.items);
