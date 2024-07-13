@@ -139,11 +139,23 @@ const users = [
 // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum',
 // 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
 
-function getSortedUniqueSkills(users) {
-  return users
-    .flatMap((user) => user.skills)
-    .filter((skill, ind, array) => array.indexOf(skill) === ind)
-    .toSorted((a, b) => a.localeCompare(b));
-}
+// function getSortedUniqueSkills(users) {
+//   return users
+//     .flatMap((user) => user.skills)
+//     .filter((skill, ind, array) => array.indexOf(skill) === ind)
+//     .toSorted((a, b) => a.localeCompare(b));
+// }
 
-console.log(getSortedUniqueSkills(users));
+// console.log(getSortedUniqueSkills(users));
+
+// Task 5
+//Призначити знижку 20% на фрукти в масиві,
+//Присвоїти ID для кожного продукту (використовуючи індекс елемента)
+const fruits = [
+  { name: "apple", price: 200 },
+  { name: "orange", price: 300 },
+  { name: "grapes", price: 750 },
+];
+
+const fruitsNew = fruits.map((fruit, index) => ({...fruit, price:fruit.price * 0.8, id:index * 1234}));
+console.log(fruitsNew);
