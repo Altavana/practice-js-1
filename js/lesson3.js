@@ -35,7 +35,7 @@ const users = [
     gender: "male",
     age: 24,
   },
- {
+  {
     id: "249b6175-5c30-44c6-b154-f120923736f5",
     name: "Elma Head",
     email: "elmahead@omatom.com",
@@ -59,7 +59,7 @@ const users = [
     gender: "male",
     age: 27,
   },
-{
+  {
     id: "150b00fb-dd82-427d-9faf-2879ea87c695",
     name: "Blackburn Dotson",
     email: "blackburndotson@furnigeer.com",
@@ -85,7 +85,6 @@ const users = [
   },
 ];
 
-
 // Task 1
 // Отримати масив імен усіх користувачів (поле name).
 // console.log(getUserNames(users))
@@ -93,14 +92,42 @@ const users = [
 // *зробити функцію універсальною, щоб вона повертала
 // масив значень будь-якої заданої властивості
 
-function getUserNames (array) {
-  return array.map(person => person.name);
-}
+// function getUserNames (array) {
+//   return array.map(person => person.name);
+// }
 
-console.log(getUserNames(users));
+// console.log(getUserNames(users));
 
-function getUserSomething (array, something) {
-  return array.map(person => person[something]);
-}
+// function getUserSomething (array, something) {
+//   return array.map(person => person[something]);
+// }
 
-console.log(getUserSomething(users, 'email'));
+// console.log(getUserSomething(users, 'email'));
+
+// Task 2
+// Отримати масив користувачів віком від min до max
+// console.log (getUsersWithAge (users, 20, 30));
+// [об'єкт Ross Vazquez, об'єкт Elma Head, об'єкт Carey Barr]
+// console.log (getUsersWithAge (users, 30, 40));
+// [об'єкт Moore Hensley, об'єкт Sharlene Bush, об'єкт Blackburn Dotson, об'єкт Sheree Anthony]
+
+// function getUsersWithAge(users, minAge, maxAge) {
+//   return users.filter((user) => user.age >= minAge && user.age <= maxAge);
+// }
+// console.log(getUsersWithAge(users, 20, 30));
+
+// Task 3
+// Отримати масив імен користувачів по статі (властивість gender)
+// console.log(getUsersWithGender(users, 'male')); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
+
+// const getUsersWithGender = (users, gender) =>
+//   users.filter((user) => user.gender === gender).map((user) => user.name);
+
+const getUsersWithGender = (users, gender) =>
+  users.reduce(
+    (userNames, user) =>
+      user.gender === gender ? [...userNames, user.name] : userNames,
+    []
+  );
+
+console.log(getUsersWithGender(users, "male")); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
