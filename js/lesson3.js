@@ -123,11 +123,27 @@ const users = [
 // const getUsersWithGender = (users, gender) =>
 //   users.filter((user) => user.gender === gender).map((user) => user.name);
 
-const getUsersWithGender = (users, gender) =>
-  users.reduce(
-    (userNames, user) =>
-      user.gender === gender ? [...userNames, user.name] : userNames,
-    []
-  );
+// const getUsersWithGender = (users, gender) =>
+//   users.reduce(
+//     (userNames, user) =>
+//       user.gender === gender ? [...userNames, user.name] : userNames,
+//     []
+//   );
 
-console.log(getUsersWithGender(users, "male")); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
+// console.log(getUsersWithGender(users, "male")); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
+
+// Task 4
+// Отримати масив всіх навичок усіх користувачів (поле skills), при цьому не повинно бути
+// повторювань навичок і вони мають бути відсортовані в алфавітному порядку.
+// console.log(getSortedUniqueSkills(users));
+// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum',
+// 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
+
+function getSortedUniqueSkills(users) {
+  return users
+    .flatMap((user) => user.skills)
+    .filter((skill, ind, array) => array.indexOf(skill) === ind)
+    .toSorted((a, b) => a.localeCompare(b));
+}
+
+console.log(getSortedUniqueSkills(users));
