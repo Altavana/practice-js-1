@@ -108,10 +108,87 @@
 Натиснувши кнопку "Подвоювати", збільшити значення
 у кожному елементі списку у 2 рази
 */
-const items = document.querySelectorAll(".listItem");
-const doubleBtn = document.querySelector("#double");
+// const items = document.querySelectorAll(".listItem");
+// const doubleBtn = document.querySelector("#double");
 
-const doubleItems = () => {
-  items.forEach((item) => (item.textContent *= 2));
-};
-doubleBtn.addEventListener("click", doubleItems);
+// const doubleItems = () => {
+//   items.forEach((item) => (item.textContent *= 2));
+// };
+// doubleBtn.addEventListener("click", doubleItems);
+
+
+
+//  При натисканні на будь-який рядок у табличці відобразіть
+//  повідомлення з назвою продукту та його ціною.
+//  "Ви вибрали <product> за <price>".
+
+// const table = document.querySelector("#productTable");
+// const outputMessage = document.querySelector("#productDetails");
+
+// const outputAction = (event) => {
+
+
+//   if (event.target.nodeName !== "TD"){
+//     return;
+//   }
+
+//   const parent = event.target.parentNode;
+
+//   const product = parent.firstElementChild.textContent;
+//   const price = parent.lastElementChild.textContent;
+
+//   outputMessage.textContent = `Ви вибрали ${product.toLowerCase()}  за ${price}`;
+ 
+// }
+
+// table.addEventListener('click', outputAction);
+
+/*
+Завдання 8
+При натисканні на кожну з кнопок підсумовуються значення з data-атрибутів.
+За натисканням на кнопку "Вивести результат" виводиться сума значення, а також статистика з
+інформацією про те, яка кнопка була натиснута скільки разів.
+*/
+
+const parentEl = document.querySelector(".statList");
+const resultBtn = document.querySelector("#resultButton");
+const resultSection = document.querySelector("#resultSection");
+let stats = {};
+
+
+let total = 0;
+const countClicks = (event) => {
+ if (!event.target.classList.contains("calcButton")){
+  return;
+ }
+total += Number(event.target.dataset.number);
+
+
+const key = event.target.textContent;
+
+if(stats[key]){
+  stats[key] += 1;
+} else {
+  stats[key] = 1;
+}
+
+
+
+}
+
+const totalResult = () => {
+  let markup = `Загальна кількість ${total}<br>`;
+for (const [key, value] of Object.entries(stats)){
+  markup += `${key} натиснута ${value} разів<br>`
+}
+resultSection.innerHTML = markup;
+  total = 0;
+stats = {};
+
+
+}
+
+parentEl.addEventListener('click', countClicks);
+
+resultBtn.addEventListener('click', totalResult);
+
