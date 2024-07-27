@@ -77,28 +77,41 @@
 // Створити невелику гру
 // Спочатку на екрані з'являється якась фігура рандомного коліру в рандомному місті
 // Натискаючі на фігуру, вона змінює свою форму, колір, місце розташування
-const forms = [
-  "width: 100px; height: 100px; border-width: 1px;",
-  "width: 100px; height: 100px; border-radius: 50%;",
-  "width: 150px; height: 100px; border-width: 1px;",
-  "width: 200px; height: 100px; border-radius: 100px / 50px; ",
-  "width: 150px; height: 100px; transform: skew(20deg)",
-];
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-function randomither(max) {
-  return Math.floor(Math.random() * max);
-}
-const changeFigure = () => {
-  figure.style.cssText = forms[randomither(forms.length)];
-  figure.style.backgroundColor = getRandomHexColor();
-  figure.style.position = "absolute";
-  figure.style.top = `${randomither(95)}%`;
-  figure.style.left = `${randomither(95)}%`;
-};
-const figure = document.createElement("div");
-changeFigure();
-document.body.append(figure);
+// const forms = [
+//   "width: 100px; height: 100px; border-width: 1px;",
+//   "width: 100px; height: 100px; border-radius: 50%;",
+//   "width: 150px; height: 100px; border-width: 1px;",
+//   "width: 200px; height: 100px; border-radius: 100px / 50px; ",
+//   "width: 150px; height: 100px; transform: skew(20deg)",
+// ];
+// function getRandomHexColor() {
+//   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+// }
+// function randomither(max) {
+//   return Math.floor(Math.random() * max);
+// }
+// const changeFigure = () => {
+//   figure.style.cssText = forms[randomither(forms.length)];
+//   figure.style.backgroundColor = getRandomHexColor();
+//   figure.style.position = "absolute";
+//   figure.style.top = `${randomither(95)}%`;
+//   figure.style.left = `${randomither(95)}%`;
+// };
+// const figure = document.createElement("div");
+// changeFigure();
+// document.body.append(figure);
 
-figure.addEventListener("click", changeFigure);
+// figure.addEventListener("click", changeFigure);
+
+/*
+Завдання 6
+Натиснувши кнопку "Подвоювати", збільшити значення
+у кожному елементі списку у 2 рази
+*/
+const items = document.querySelectorAll(".listItem");
+const doubleBtn = document.querySelector("#double");
+
+const doubleItems = () => {
+  items.forEach((item) => (item.textContent *= 2));
+};
+doubleBtn.addEventListener("click", doubleItems);
